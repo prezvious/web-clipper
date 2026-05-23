@@ -2,20 +2,29 @@ import { describe, test, expect, vi, beforeAll, afterAll } from 'vitest';
 import { readdirSync, readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join, basename, extname } from 'path';
 import { parseHTML } from 'linkedom';
-import DefuddleClass from 'defuddle';
-import { createMarkdownContent } from 'defuddle/full';
-import { buildVariables, generateFrontmatter, formatPropertyValue } from './shared';
-import { compileTemplate } from './template-compiler';
-import { createAsyncResolver, createSelectorProcessor } from '../api';
+import { clip, DocumentParser } from '../api';
+import { Template } from '../types/types';
 
 // ---------------------------------------------------------------------------
 // Freeze time so {{date}} is deterministic in expected output
 // ---------------------------------------------------------------------------
 
 const FROZEN_DATE = new Date('2025-01-15T12:00:00Z');
+const ORIGINAL_TZ = process.env.TZ;
 
-beforeAll(() => { vi.useFakeTimers({ now: FROZEN_DATE }); });
-afterAll(() => { vi.useRealTimers(); });
+beforeAll(() => {
+	process.env.TZ = 'America/Los_Angeles';
+	vi.useFakeTimers({ now: FROZEN_DATE });
+});
+
+afterAll(() => {
+	vi.useRealTimers();
+	if (ORIGINAL_TZ === undefined) {
+		delete process.env.TZ;
+	} else {
+		process.env.TZ = ORIGINAL_TZ;
+	}
+});
 
 // ---------------------------------------------------------------------------
 // Fixture types
@@ -27,61 +36,26 @@ interface FixtureTemplate {
 	properties: { name: string; value: string; type: string }[];
 }
 
+const linkedomParser: DocumentParser = {
+	parseFromString(html: string, _mimeType: string) {
+		return parseHTML(html).document;
+	},
+};
+
 async function runFixture(html: string, url: string, template: FixtureTemplate): Promise<string> {
-	const { document } = parseHTML(html);
-
-	// Run defuddle — same as CLI
-	const defuddle = new DefuddleClass(document as unknown as Document, { url });
-	const defuddleResult = defuddle.parse();
-	const markdownContent = createMarkdownContent(defuddleResult.content, url);
-
-	// Build variables from defuddle output — same as CLI
-	const variables = buildVariables({
-		title: defuddleResult.title,
-		author: defuddleResult.author,
-		content: markdownContent,
-		contentHtml: defuddleResult.content,
+	const result = await clip({
+		html,
 		url,
-		fullHtml: html,
-		description: defuddleResult.description,
-		favicon: defuddleResult.favicon,
-		image: defuddleResult.image,
-		published: defuddleResult.published,
-		site: defuddleResult.site,
-		language: defuddleResult.language,
-		wordCount: defuddleResult.wordCount,
-		schemaOrgData: defuddleResult.schemaOrgData,
-		metaTags: defuddleResult.metaTags,
-		extractedContent: defuddleResult.variables,
+		template: {
+			id: 'fixture',
+			name: 'Fixture',
+			behavior: 'create',
+			path: '',
+			...template,
+		} as Template,
+		documentParser: linkedomParser,
 	});
-
-	const asyncResolver = createAsyncResolver(document);
-	const selectorProcessor = createSelectorProcessor(document);
-
-	const compileFn = (text: string) =>
-		compileTemplate(0, text, variables, url, asyncResolver, selectorProcessor);
-
-	// Compile properties with type-aware formatting
-	const compiledProperties = await Promise.all(
-		template.properties.map(async (prop) => {
-			let value = await compileFn(prop.value);
-			value = formatPropertyValue(value, prop.type, prop.value);
-			return { name: prop.name, value };
-		})
-	);
-
-	// Build type map from template properties
-	const typeMap: Record<string, string> = {};
-	for (const prop of template.properties) {
-		if (prop.type) {
-			typeMap[prop.name] = prop.type;
-		}
-	}
-
-	const frontmatter = generateFrontmatter(compiledProperties, typeMap);
-	const compiledContent = await compileFn(template.noteContentFormat);
-
-	return frontmatter ? frontmatter + compiledContent : compiledContent;
+	return result.fullContent;
 }
 
 // ---------------------------------------------------------------------------
@@ -113,6 +87,10 @@ function saveExpected(name: string, content: string): void {
 		mkdirSync(EXPECTED_DIR, { recursive: true });
 	}
 	writeFileSync(join(EXPECTED_DIR, `${name}.md`), content, 'utf-8');
+}
+
+function normalizeLineEndings(value: string): string {
+	return value.replace(/\r\n/g, '\n').trim();
 }
 
 // ---------------------------------------------------------------------------
@@ -150,6 +128,6 @@ describe('Template fixtures', () => {
 			);
 		}
 
-		expect(result.trim()).toEqual(expected.trim());
+		expect(normalizeLineEndings(result)).toEqual(normalizeLineEndings(expected));
 	});
 });

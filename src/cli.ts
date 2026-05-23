@@ -2,6 +2,7 @@
 // banner in scripts/build-cli.mjs. They must run before any bundled module code.
 import { parseHTML } from 'linkedom';
 import { clip, matchTemplate, DocumentParser } from './api';
+import { Defuddle } from 'defuddle/node';
 import { openInObsidian } from './utils/cli-utils';
 import { Template } from './types/types';
 import * as fs from 'fs';
@@ -32,8 +33,8 @@ Options:
                                If a directory, auto-matches template by URL triggers
   -o, --output <path>          Output .md file path (default: stdout)
       --html <path>            Read HTML from file instead of fetching URL (use - for stdin)
-      --vault <name>           Obsidian vault name
-      --open                   Send to Obsidian instead of writing file
+      --vault <name>           Cognitea vault name
+      --open                   Send to Cognitea instead of writing file
       --uri                    Use URI scheme instead of Obsidian CLI
       --silent                 Suppress Obsidian focus (URI mode)
       --property-types <path>  JSON mapping property names to types
@@ -205,10 +206,8 @@ async function main(): Promise<void> {
 		if (!matched) {
 			const hasSchemaTrigs = templates.some(t => t.triggers?.some(tr => tr.startsWith('schema:')));
 			if (hasSchemaTrigs) {
-				const DefuddleClass = (await import('defuddle')).default;
 				parsedDocument = linkedomParser.parseFromString(html, 'text/html');
-				const defuddle = new DefuddleClass((parsedDocument.documentElement || parsedDocument) as unknown as Document, { url: args.url });
-				const defuddleResult = defuddle.parse();
+				const defuddleResult = await Defuddle(parsedDocument as unknown as Document, args.url, { useAsync: false });
 				matched = matchTemplate(templates, args.url, defuddleResult.schemaOrgData);
 			}
 		}

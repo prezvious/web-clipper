@@ -9,7 +9,7 @@ import {
 	syncHoverListener,
 	markHighlightJustCreated,
 } from './highlighter-overlays';
-import { detectBrowser, addBrowserClassToHtml } from './browser-detection';
+import { addBrowserClassToHtml } from './browser-detection';
 import dayjs from 'dayjs';
 import { generalSettings, loadSettings } from './storage-utils';
 
@@ -321,10 +321,9 @@ function updateUndoRedoButtons() {
 
 async function handleClipButtonClick(e: Event) {
 	e.preventDefault();
-	const browserType = await detectBrowser();
 
 	try {
-		const response = await browser.runtime.sendMessage({action: "openPopup"});
+		const response = await browser.runtime.sendMessage({ action: "downloadCurrentTabMarkdown" });
 		if (response && typeof response === 'object' && 'success' in response) {
 			if (!response.success) {
 				throw new Error((response as { error?: string }).error || 'Unknown error');
@@ -333,12 +332,8 @@ async function handleClipButtonClick(e: Event) {
 			throw new Error('Invalid response from background script');
 		}
 	} catch (error) {
-		console.error('Error opening popup:', error);
-		if (browserType === 'firefox') {
-			alert("Additional permissions required. To open Web Clipper from the highlighter, go to about:config and set this to true:\n\nextensions.openPopupWithoutUserGesture.enabled");
-		} else {
-			console.error('Failed to open popup:', error);
-		}
+		console.error('Error downloading Markdown:', error);
+		alert('Failed to download Markdown from this page. Try reloading the page and capturing again.');
 	}
 }
 
@@ -1048,7 +1043,6 @@ export function applyHighlights() {
 }
 
 // Apply, save, and update UI after highlight changes.
-// The popup/side-panel detects changes via storage.local.onChanged.
 function commitHighlightChanges() {
 	applyHighlights();
 	saveHighlights();
@@ -1313,4 +1307,3 @@ function findLastTextNode(element: Element): Text | null {
 	}
 	return lastNode as Text | null;
 }
-

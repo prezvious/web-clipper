@@ -49,6 +49,7 @@ await esbuild.build({
 	alias: {
 		'webextension-polyfill': path.join(root, 'src/utils/cli-stubs.ts'),
 		'defuddle/full': path.join(defuddleDir, 'index.full.js'),
+		'defuddle/node': path.join(defuddleDir, 'node.js'),
 		'defuddle': path.join(defuddleDir, 'index.js'),
 	},
 	logLevel: 'info',

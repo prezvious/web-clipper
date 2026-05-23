@@ -18,7 +18,7 @@
 		"message": "Agregar proveedor"
 	},
 	"addToObsidian": {
-		"message": "Agregar a Obsidian"
+		"message": "Agregar a Cognitea"
 	},
 	"addVaultPlaceholder": {
 		"message": "Presiona enter para añadir una bóveda"
@@ -45,7 +45,7 @@
 		"message": "Sin clave API"
 	},
 	"apiKeysWarning": {
-		"message": "Al usar un proveedor externo, aceptas sus términos y política de privacidad. Las solicitudes del intérprete se envían directamente al proveedor que elijas. Obsidian no recopila ni almacena ningún dato sobre tus solicitudes."
+		"message": "Al usar un proveedor externo, aceptas sus términos y política de privacidad. Las solicitudes del intérprete se envían directamente al proveedor que elijas. Cognitea no recopila ni almacena ningún dato sobre tus solicitudes."
 	},
 	"appendToDaily": {
 		"message": "Agregar a la nota diaria, al final"
@@ -96,7 +96,7 @@
 		"message": "Comportamiento de guardado"
 	},
 	"clipBehaviorDescription": {
-		"message": "Elige cómo se guarda el contenido resaltado en Obsidian. Define la variable $strong_start${{content}}$strong_end$.",
+		"message": "Elige cómo se guarda el contenido resaltado en Cognitea. Define la variable $strong_start${{content}}$strong_end$.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -107,7 +107,7 @@
 		}
 	},
 	"clipboardError": {
-		"message": "Obsidian no puede acceder a tu portapapeles. Prueba las instrucciones de solución de problemas aquí: $1",
+		"message": "Cognitea no puede acceder a tu portapapeles. Prueba las instrucciones de solución de problemas aquí: $1",
 		"placeholders": {
 			"1": {
 				"content": "$1"
@@ -118,7 +118,7 @@
 		"message": "Cerrar"
 	},
 	"commandOpenClipper": {
-		"message": "Abrir Obsidian Clipper"
+		"message": "Download page as Markdown"
 	},
 	"commandQuickClip": {
 		"message": "Guardado rápido"
@@ -196,7 +196,7 @@
 		"message": "Duplicar"
 	},
 	"earlyAccessDescription": {
-		"message": "Usa funciones que requieren la última versión de $link_start$acceso anticipado$link_end$ de Obsidian. Actualmente requiere Obsidian 1.7.2 o posterior.",
+		"message": "Usa funciones que requieren la última versión de $link_start$acceso anticipado$link_end$ de Cognitea. Actualmente requiere Cognitea 1.7.2 o posterior.",
 		"placeholders": {
 			"link_end": {
 				"content": "</a>"
@@ -225,7 +225,7 @@
 		"message": "Incrustado"
 	},
 	"enableHighlighterDescription": {
-		"message": "Resalta contenido en páginas web que puedes guardar en Obsidian."
+		"message": "Resalta contenido en páginas web que puedes guardar en Cognitea."
 	},
 	"enableInterpreter": {
 		"message": "Habilitar intérprete"
@@ -272,7 +272,7 @@
 		"message": "Exportar propiedades"
 	},
 	"exportPropertiesDescription": {
-		"message": "Guarda las propiedades del Web Clipper en un archivo $strong_start$types.json$strong_end$ que puede ser importado en tu bóveda de Obsidian o en Web Clipper en otros dispositivos.",
+		"message": "Guarda las propiedades del Hexel Capture en un archivo $strong_start$types.json$strong_end$ que puede ser importado en tu bóveda de Cognitea o en Hexel Capture en otros dispositivos.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -283,10 +283,10 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "Guarda contenido web en un formato privado y duradero al que puedes acceder sin conexión. La extensión oficial para Obsidian."
+		"message": "Guarda contenido web en un formato privado y duradero al que puedes acceder sin conexión. La extensión oficial para Cognitea."
 	},
 	"extensionName": {
-		"message": "Obsidian Web Clipper"
+		"message": "Hexel Capture"
 	},
 	"failedToCopyText": {
 		"message": "Error al copiar el texto"
@@ -337,7 +337,7 @@
 		"message": "Comentarios"
 	},
 	"feedbackDescription": {
-		"message": "¿Cómo podemos mejorar Web Clipper? Por favor, visita nuestra página de ayuda, donde puedes reportar errores, sugerir características y obtener ayuda con problemas comunes."
+		"message": "¿Cómo podemos mejorar Hexel Capture? Por favor, visita nuestra página de ayuda, donde puedes reportar errores, sugerir características y obtener ayuda con problemas comunes."
 	},
 	"feedbackTitle": {
 		"message": "Gracias por tus comentarios"
@@ -358,7 +358,7 @@
 		"message": "Ayuda"
 	},
 	"helpDescription": {
-		"message": "Aprenda a usar Web Clipper y obtenga ayuda para solucionar problemas."
+		"message": "Aprenda a usar Hexel Capture y obtenga ayuda para solucionar problemas."
 	},
 	"highlightInline": {
 		"message": "Resaltar el contenido de la página"
@@ -409,7 +409,7 @@
 		"message": "Importar propiedades"
 	},
 	"importPropertiesDescription": {
-		"message": "Para importar tus propiedades desde Obsidian, localiza el archivo $strong_1_start$types.json$strong_1_end$ en la carpeta $strong_2_start$.obsidian$strong_2_end$ dentro de tu bóveda. Ten en cuenta que esta carpeta está oculta por defecto en la mayoría de los sistemas operativos.",
+		"message": "Para importar tus propiedades desde Cognitea, localiza el archivo $strong_1_start$types.json$strong_1_end$ en la carpeta $strong_2_start$.obsidian$strong_2_end$ dentro de tu bóveda. Ten en cuenta que esta carpeta está oculta por defecto en la mayoría de los sistemas operativos.",
 		"placeholders": {
 			"strong_1_end": {
 				"content": "</strong>"
@@ -467,7 +467,7 @@
 		"message": "Modo heredado"
 	},
 	"legacyModeDescription": {
-		"message": "Usa el método de guardado URI compatible con Obsidian 1.6.7 o anterior. Ten en cuenta que la longitud del contenido que puedes guardar está limitada por tu navegador y sistema operativo. Algunas páginas pueden fallar sin mostrar errores."
+		"message": "Usa el método de guardado URI compatible con Cognitea 1.6.7 o anterior. Ten en cuenta que la longitud del contenido que puedes guardar está limitada por tu navegador y sistema operativo. Algunas páginas pueden fallar sin mostrar errores."
 	},
 	"loadArticle": {
 		"message": "Leer artículo"
@@ -556,7 +556,7 @@
 		"message": "Abrir"
 	},
 	"openBehaviorDescription": {
-		"message": "Elija cómo se abre Web Clipper por defecto."
+		"message": "Elija cómo se abre Hexel Capture por defecto."
 	},
 	"openBehaviorTitle": {
 		"message": "Comportamiento de apertura"
@@ -694,7 +694,7 @@
 		"message": "Proveedores"
 	},
 	"rateExtensionDescription": {
-		"message": "¿Estás disfrutando de Web Clipper? Ayúdanos dándole una calificación."
+		"message": "¿Estás disfrutando de Hexel Capture? Ayúdanos dándole una calificación."
 	},
 	"reader": {
 		"message": "Lector"
@@ -958,7 +958,7 @@
 		"message": "Guardar nota sin abrirla"
 	},
 	"silentOpenDescription": {
-		"message": "Las notas se guardarán pero no se abrirán en una nueva pestaña. Obsidian seguirá siendo traído al primer plano."
+		"message": "Las notas se guardarán pero no se abrirán en una nueva pestaña. Cognitea seguirá siendo traído al primer plano."
 	},
 	"sort": {
 		"message": "Ordenar"
@@ -1053,7 +1053,7 @@
 		"message": "Bóvedas"
 	},
 	"vaultsDescription": {
-		"message": "Por defecto, las notas se guardan en la bóveda abierta actualmente. Puedes añadir bóvedas aquí si quieres la opción de guardar en diferentes bóvedas. Los nombres de las bóvedas deben coincidir exactamente con el nombre de la bóveda de Obsidian. Presiona $strong_start$enter$strong_end$ para añadir una bóveda.",
+		"message": "Por defecto, las notas se guardan en la bóveda abierta actualmente. Puedes añadir bóvedas aquí si quieres la opción de guardar en diferentes bóvedas. Los nombres de las bóvedas deben coincidir exactamente con el nombre de la bóveda de Cognitea. Presiona $strong_start$enter$strong_end$ para añadir una bóveda.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"

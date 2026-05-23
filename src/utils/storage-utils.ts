@@ -1,7 +1,6 @@
 import browser from './browser-polyfill';
 import { Settings, ModelConfig, PropertyType, HistoryEntry, Provider, Rating, SavedClipRecord, SavedClipsMap } from '../types/types';
 import { debugLog } from './debug';
-import { copyToClipboard } from 'core/popup';
 import { buildSavedClipRecord, normalizeClipUrl, SavedClipRecordInput } from './saved-clips';
 
 export type { Settings, ModelConfig, PropertyType, HistoryEntry, Provider, Rating, SavedClipRecord, SavedClipsMap };
@@ -13,7 +12,6 @@ export let generalSettings: Settings = {
 	silentOpen: false,
 	showSavedPageIndicator: true,
 	changeSavedPageFavicon: true,
-	openBehavior: 'popup',
 	highlighterEnabled: true,
 	alwaysShowHighlights: false,
 	highlightBehavior: 'highlight-inline',
@@ -62,6 +60,7 @@ export function getLocalStorage(key: string): Promise<any> {
 }
 
 interface StorageData {
+	[key: string]: any;
 	general_settings?: {
 		showMoreActionsButton?: boolean;
 		betaFeatures?: boolean;
@@ -69,7 +68,6 @@ interface StorageData {
 		silentOpen?: boolean;
 		showSavedPageIndicator?: boolean;
 		changeSavedPageFavicon?: boolean;
-		openBehavior?: boolean | 'popup' | 'embedded';
 		saveBehavior?: 'addToObsidian' | 'copyToClipboard' | 'saveFile';
 	};
 	vaults?: string[];
@@ -115,7 +113,15 @@ interface StorageData {
 	migrationVersion?: number;
 }
 
-const CURRENT_MIGRATION_VERSION = 2;
+const CURRENT_MIGRATION_VERSION = 3;
+
+async function removeStoredTemplates(data: StorageData): Promise<void> {
+	const templateKeys = Object.keys(data).filter(key => key === 'template_list' || key.startsWith('template_'));
+	if (templateKeys.length > 0) {
+		await browser.storage.sync.remove(templateKeys);
+		debugLog('Settings', `Removed ${templateKeys.length} stored template setting(s)`);
+	}
+}
 
 export async function loadSettings(): Promise<Settings> {
 	const data = await browser.storage.sync.get(null) as StorageData;
@@ -129,7 +135,6 @@ export async function loadSettings(): Promise<Settings> {
 		silentOpen: false,
 		showSavedPageIndicator: true,
 		changeSavedPageFavicon: true,
-		openBehavior: 'popup',
 		highlighterEnabled: true,
 		alwaysShowHighlights: true,
 		highlightBehavior: 'highlight-inline',
@@ -170,8 +175,12 @@ export async function loadSettings(): Promise<Settings> {
 
 	const previousMigrationVersion = data.migrationVersion || 0;
 	const migratedGeneralSettings = { ...(data.general_settings || {}) };
+	delete (migratedGeneralSettings as Record<string, unknown>).openBehavior;
 	if (previousMigrationVersion < 2 && migratedGeneralSettings.saveBehavior === 'saveFile') {
 		migratedGeneralSettings.saveBehavior = 'addToObsidian';
+	}
+	if (previousMigrationVersion < 3) {
+		await removeStoredTemplates(data);
 	}
 
 	// Update migration version if needed
@@ -201,9 +210,6 @@ export async function loadSettings(): Promise<Settings> {
 		silentOpen: migratedGeneralSettings.silentOpen ?? defaultSettings.silentOpen,
 		showSavedPageIndicator: migratedGeneralSettings.showSavedPageIndicator ?? defaultSettings.showSavedPageIndicator,
 		changeSavedPageFavicon: migratedGeneralSettings.changeSavedPageFavicon ?? defaultSettings.changeSavedPageFavicon,
-		openBehavior: typeof migratedGeneralSettings.openBehavior === 'boolean'
-			? (migratedGeneralSettings.openBehavior ? 'embedded' : 'popup')
-			: (migratedGeneralSettings.openBehavior ?? defaultSettings.openBehavior),
 		highlighterEnabled: data.highlighter_settings?.highlighterEnabled ?? defaultSettings.highlighterEnabled,
 		alwaysShowHighlights: data.highlighter_settings?.alwaysShowHighlights ?? defaultSettings.alwaysShowHighlights,
 		highlightBehavior: data.highlighter_settings?.highlightBehavior ?? defaultSettings.highlightBehavior,
@@ -256,7 +262,6 @@ export async function saveSettings(settings?: Partial<Settings>): Promise<void> 
 			silentOpen: generalSettings.silentOpen,
 			showSavedPageIndicator: generalSettings.showSavedPageIndicator,
 			changeSavedPageFavicon: generalSettings.changeSavedPageFavicon,
-			openBehavior: generalSettings.openBehavior,
 			saveBehavior: generalSettings.saveBehavior,
 		},
 		highlighter_settings: {

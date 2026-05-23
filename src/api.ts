@@ -1,9 +1,7 @@
-// Programmatic API for Obsidian Web Clipper.
-// Environment-agnostic — no Node.js or browser dependencies.
-// The caller provides a DocumentParser for their environment.
+// Programmatic API for Hexel Capture.
+// Node-compatible; the caller provides a DocumentParser for their DOM environment.
 
-import DefuddleClass from 'defuddle';
-import { createMarkdownContent } from 'defuddle/full';
+import { Defuddle } from 'defuddle/node';
 import { compileTemplate, SelectorProcessor } from './utils/template-compiler';
 import { AsyncResolver, RenderContext } from './utils/renderer';
 import { applyFilters } from './utils/filters';
@@ -178,15 +176,11 @@ export async function clip(options: ClipOptions): Promise<ClipResult> {
 
 	// Use pre-parsed document if provided, otherwise parse
 	const doc = parsedDocument ?? documentParser.parseFromString(html, 'text/html');
-	const documentElement = doc.documentElement || doc;
-
-	// Extract content with defuddle
-	// Cast through unknown: linkedom's Document is structurally compatible but not nominally typed as DOM Document
-	const defuddle = new DefuddleClass(documentElement as unknown as Document, { url });
-	const defuddleResult = defuddle.parse();
-
-	// Convert to markdown
-	const markdownContent = createMarkdownContent(defuddleResult.content, url);
+	const defuddleResult = await Defuddle(doc as unknown as Document, url, {
+		separateMarkdown: true,
+		useAsync: false,
+	});
+	const markdownContent = defuddleResult.contentMarkdown || '';
 
 	// Build template variables
 	const variables = buildVariables({

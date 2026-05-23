@@ -73,7 +73,7 @@ async function openViaObsidianCli(
 }
 
 /**
- * Open a note in Obsidian via URI scheme (fallback / legacy mode).
+ * Open a note in Cognitea via URI scheme (fallback / legacy mode).
  */
 async function openViaUri(
 	fileContent: string,
@@ -123,7 +123,7 @@ async function openViaUri(
 }
 
 /**
- * Send a note to Obsidian. Uses the Obsidian CLI by default,
+ * Send a note to Cognitea. Uses the Obsidian CLI by default,
  * falls back to URI scheme if --uri is set or CLI is not available.
  */
 export async function openInObsidian(
@@ -141,5 +141,5 @@ export async function openInObsidian(
 	}
 
 	await openViaUri(fileContent, noteName, path, vault, behavior, silent);
-	return `Opened in Obsidian${vault ? ` (vault: ${vault})` : ''}`;
+	return `Opened in Cognitea${vault ? ` (vault: ${vault})` : ''}`;
 }

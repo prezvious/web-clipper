@@ -13,7 +13,6 @@ export const generalSettings: Settings = {
 	silentOpen: false,
 	showSavedPageIndicator: true,
 	changeSavedPageFavicon: true,
-	openBehavior: 'popup',
 	highlighterEnabled: false,
 	alwaysShowHighlights: false,
 	highlightBehavior: 'no-highlights',

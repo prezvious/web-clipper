@@ -404,12 +404,6 @@ async function setupReaderPageMessageHandler(articleUrl: string, defuddleResult:
 			return true;
 		}
 
-		if (message.action === 'toggle-iframe') {
-			Reader.toggleReaderPageIframe(document);
-			sendResponse({ success: true });
-			return true;
-		}
-
 		if (message.action === 'getReaderModeState') {
 			sendResponse({ isActive: true });
 			return true;

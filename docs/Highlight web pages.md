@@ -4,9 +4,9 @@ aliases:
   - highlights
   - Highlighter
 ---
-[[Introduction to Obsidian Web Clipper|Web Clipper]] lets you highlight text on web pages, and select the elements you want to save to Obsidian. Your highlights are saved, so you can revisit them when you return to a page.
+[[Introduction to Obsidian Web Clipper|Hexel Capture]] lets you highlight text on web pages, and select the elements you want to save to Cognitea. Your highlights are saved, so you can revisit them when you return to a page.
 
-Highlights can be [[Clip web pages|captured]] and saved to Obsidian when you open the extension.
+Highlights can be [[Clip web pages|captured]] and saved to Cognitea when you open the extension.
 
 ## Turn on highlighter
 
@@ -20,7 +20,7 @@ Once highlighting is on, you can select text, images, and elements you want to h
 
 ## Highlighter settings
 
-You can change the highlighter behavior by going to Web Clipper settings. Here you can also export your highlights to a `.json` file.
+You can change the highlighter behavior by going to Hexel Capture settings. Here you can also export your highlights to a `.json` file.
 
 There are three options for highlights to be inserted into your clipped note via the `{{content}}` [[Variables|variable]]:
 

@@ -1,12 +1,30 @@
 .DS_Store
+Thumbs.db
 
 # NPM
 node_modules/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE / Editor
+.vscode/
+.idea/
+.context
+.cursorrules
+
+# Test & Audit
+coverage/
+BUG_AUDIT.md
 
 # Dev
 dev/
 dev_firefox/
 dev_safari/
+.tmp/
+tmp/
 
 # Prod
 dist/
@@ -20,7 +38,6 @@ assets/shared
 *.xcuserstate
 *.xcuserdatad
 
-.context
-.cursorrules
+# Env
 .env
 context/

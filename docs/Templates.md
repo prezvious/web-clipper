@@ -1,18 +1,18 @@
 ---
 permalink: web-clipper/templates
-description: Learn to create templates that capture and organize web page metadata automatically with Web Clipper.
+description: Learn to create templates that capture and organize web page metadata automatically with Hexel Capture.
 ---
-[[Introduction to Obsidian Web Clipper|Web Clipper]] allows you to create templates that automatically capture and organize metadata from web pages. Example templates are available in the [clipper-templates repo](https://github.com/kepano/clipper-templates). 
+[[Introduction to Obsidian Web Clipper|Hexel Capture]] allows you to create templates that automatically capture and organize metadata from web pages. Example templates are available in the [clipper-templates repo](https://github.com/kepano/clipper-templates).
 
 ## Create or edit a template
 
-To **create** a template go to Web Clipper settings and click the **New template** button in the sidebar. You can also **duplicate** a template in the **More** actions menu in the top right corner.
+To **create** a template go to Hexel Capture settings and click the **New template** button in the sidebar. You can also **duplicate** a template in the **More** actions menu in the top right corner.
 
 To **edit** a template choose a template from the sidebar. Your changes will be saved automatically.
 
 Templates make use of [[Variables]], [[Filters]], and [[Logic]], which allow you to tailor how content will be saved.
 
-## Import and export Web Clipper templates
+## Import and export Hexel Capture templates
 
 To import a template:
 
@@ -26,7 +26,7 @@ To export a template click **Export** in the top right. This will download the t
 
 ### Behavior
 
-Define how content from Web Clipper will be added to Obsidian:
+Define how content from Hexel Capture will be added to Cognitea:
 
 - **Create a new note**
 - **Add to an existing note**, at the top or bottom
@@ -36,7 +36,7 @@ Define how content from Web Clipper will be added to Obsidian:
 
 Template triggers allow you to automatically select a template based on the current page URL or [schema.org](https://schema.org/) data. You can define multiple rules for each template, separated by a new line.
 
-The first match in your template list determines which template is used. You can drag templates up and down in Web Clipper settings to change the order in which templates are matched.
+The first match in your template list determines which template is used. You can drag templates up and down in Hexel Capture settings to change the order in which templates are matched.
 
 #### Simple URL matching
 

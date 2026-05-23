@@ -14,6 +14,7 @@ await esbuild.build({
 	external: [
 		'defuddle',
 		'defuddle/full',
+		'defuddle/node',
 		'dayjs',
 	],
 	define: {

@@ -9,7 +9,6 @@ import { createMarkdownContent } from 'defuddle/full';
 import { flattenShadowDom } from './utils/flatten-shadow-dom';
 import { serializeChildren } from './utils/dom-utils';
 import { debugLog } from './utils/debug';
-import { updateSidebarWidth, addResizeHandle, cleanupResizeHandlers } from './utils/iframe-resize';
 import { parseForClip } from './utils/clip-utils';
 
 declare global {
@@ -30,8 +29,6 @@ declare global {
 	debugLog('Clipper', 'Initializing content script, generation', myGeneration);
 
 	let isHighlighterMode = false;
-	const iframeId = 'obsidian-clipper-iframe';
-	const containerId = 'obsidian-clipper-container';
 	const toastId = 'obsidian-clipper-status-toast';
 	const chipId = 'obsidian-clipper-saved-chip';
 	const faviconId = 'obsidian-clipper-status-favicon';
@@ -84,7 +81,7 @@ declare global {
 		const detail = [filename, savedAt ? `Downloaded ${savedAt}` : ''].filter(Boolean).join(' - ');
 		if (status === 'saved') return { title: 'Downloaded', detail };
 		if (status === 'duplicate') return { title: 'Already downloaded', detail: detail || 'This page was already downloaded from this browser profile.' };
-		return { title: 'Download failed', detail: 'Web Clipper could not download Markdown for this page.' };
+		return { title: 'Download failed', detail: 'Hexel Capture could not download Markdown for this page.' };
 	}
 
 	function showStatusToast(status: 'saved' | 'duplicate' | 'failed', savedClip?: any): void {
@@ -186,56 +183,6 @@ declare global {
 		};
 		window.addEventListener('popstate', checkUrl);
 		window.addEventListener('hashchange', checkUrl);
-	}
-
-	function removeContainer(container: HTMLElement) {
-		container.classList.add('is-closing');
-		updateSidebarWidth(document, null);
-		cleanupResizeHandlers(document);
-		container.addEventListener('animationend', () => {
-			container.remove();
-			highlighter.repositionHighlights();
-		}, { once: true });
-	}
-
-	async function toggleIframe() {
-		const existingContainer = document.getElementById(containerId);
-		if (existingContainer) {
-			removeContainer(existingContainer);
-			return;
-		}
-
-		await ensureHighlighterCSS();
-
-		const container = document.createElement('div');
-		container.id = containerId;
-		container.classList.add('is-open');
-
-		const { clipperIframeWidth, clipperIframeHeight } = await browser.storage.local.get(['clipperIframeWidth', 'clipperIframeHeight']);
-		if (clipperIframeWidth) {
-			container.style.width = `${clipperIframeWidth}px`;
-		}
-		if (clipperIframeHeight) {
-			container.style.height = `${clipperIframeHeight}px`;
-		}
-
-		const iframe = document.createElement('iframe');
-		iframe.id = iframeId;
-		iframe.allow = 'clipboard-write; web-share';
-		iframe.src = browser.runtime.getURL('side-panel.html?context=iframe');
-		container.appendChild(iframe);
-
-		const resizeCallbacks = {
-			onResize: () => highlighter.repositionHighlights(),
-			onResizeEnd: () => highlighter.repositionHighlights(),
-		};
-		addResizeHandle(document, container, 'w', resizeCallbacks);
-		addResizeHandle(document, container, 's', resizeCallbacks);
-		addResizeHandle(document, container, 'sw', resizeCallbacks);
-
-		document.body.appendChild(container);
-		updateSidebarWidth(document, container);
-		container.addEventListener('animationend', () => highlighter.repositionHighlights(), { once: true });
 	}
 
 	// Firefox
@@ -407,21 +354,6 @@ declare global {
 			return true;
 		}
 
-		if (request.action === "toggle-iframe") {
-			toggleIframe().then(() => {
-				sendResponse({ success: true });
-			});
-			return true;
-		}
-
-		if (request.action === "close-iframe") {
-			const existingContainer = document.getElementById(containerId);
-			if (existingContainer) {
-				removeContainer(existingContainer);
-			}
-			return;
-		}
-
 		if (request.action === "copy-text-to-clipboard") {
 			const textArea = document.createElement("textarea");
 			textArea.value = request.text;
@@ -591,7 +523,7 @@ declare global {
 				highlighter.updatePageDomainSettings({ site: defuddled.site, favicon: defuddled.favicon });
 				sendResponse(response);
 			}).catch((error: unknown) => {
-				console.error('[Obsidian Clipper] getPageContent error:', error);
+				console.error('[Hexel Capture] getPageContent error:', error);
 				sendResponse({ success: false, error: error instanceof Error ? error.message : String(error) });
 			});
 			return true;

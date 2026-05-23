@@ -1,6 +1,6 @@
-Obsidian Web Clipper helps you highlight and capture the web in your favorite browser. Anything you save is stored as durable Markdown files that you can read offline, and preserve for the long term.
+Hexel Capture helps you highlight and capture the web in your favorite browser. Anything you save is stored as durable Markdown files that you can read offline, and preserve for the long term.
 
-- **[Download Web Clipper](https://obsidian.md/clipper)**
+- **[Download Hexel Capture](https://obsidian.md/clipper)**
 - **[Documentation](https://help.obsidian.md/web-clipper)**
 - **[Troubleshooting](https://help.obsidian.md/web-clipper/troubleshoot)**
 
@@ -15,13 +15,13 @@ Install the extension by downloading it from the official directory for your bro
 
 ## Use the extension
 
-Documentation is available on the [Obsidian Help site](https://help.obsidian.md/web-clipper), which covers how to use [highlighting](https://help.obsidian.md/web-clipper/highlight), [templates](https://help.obsidian.md/web-clipper/templates), [variables](https://help.obsidian.md/web-clipper/variables), [filters](https://help.obsidian.md/web-clipper/filters), and more.
+Documentation is available on the [Cognitea Help site](https://help.obsidian.md/web-clipper), which covers how to use [highlighting](https://help.obsidian.md/web-clipper/highlight), [templates](https://help.obsidian.md/web-clipper/templates), [variables](https://help.obsidian.md/web-clipper/variables), [filters](https://help.obsidian.md/web-clipper/filters), and more.
 
 ## Contribute
 
 ### Translations
 
-You can help translate Web Clipper into your language. Submit your translation via pull request using the format found in the [/_locales](/src/_locales) folder.
+You can help translate Hexel Capture into your language. Submit your translation via pull request using the format found in the [/_locales](/src/_locales) folder.
 
 ### Features and bug fixes
 
@@ -31,12 +31,12 @@ See the [help wanted](https://github.com/obsidianmd/obsidian-clipper/issues?q=is
 
 In no particular order:
 
-- [ ] A separate icon for Web Clipper
+- [ ] A separate icon for Hexel Capture
 - [ ] Annotate highlights
 - [ ] Template directory
 - [x] Template validation
 - [x] Template logic (if/for)
-- [x] Save images locally, [added in Obsidian 1.8.0](https://obsidian.md/changelog/2024-12-18-desktop-v1.8.0/)
+- [x] Save images locally, [added in Cognitea 1.8.0](https://obsidian.md/changelog/2024-12-18-desktop-v1.8.0/)
 - [x] Translate UI into more languages — help is welcomed
 
 ## Developers
@@ -80,7 +80,7 @@ For iOS Simulator testing on macOS:
 3. Select the **Obsidian Web Clipper (iOS)** scheme from the scheme selector
 4. Choose an iOS Simulator device and click **Run** to build and launch the app
 5. Once the app is running on the simulator, open **Safari**
-6. Navigate to a webpage and tap the **Extensions** button in Safari to access the Web Clipper extension
+6. Navigate to a webpage and tap the **Extensions** button in Safari to access the Hexel Capture extension
 
 ### Run tests
 
@@ -105,4 +105,4 @@ npm run test:watch
 
 ## License
 
-Obsidian Web Clipper source code is open source under the MIT License. All trademarks, icons, marketing copy, and other marketing assets are excluded from that license.
+Hexel Capture source code is open source under the MIT License. All trademarks, icons, marketing copy, and other marketing assets are excluded from that license.

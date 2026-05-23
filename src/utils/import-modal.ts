@@ -1,12 +1,10 @@
 import { showModal, hideModal } from './modal-utils';
-import { importTemplateFile } from './import-export';
 import { getMessage, translatePage } from './i18n';
 
 export async function showImportModal(
 	modalId: string,
 	importFunction: (content: string) => Promise<void>,
 	fileExtension: string = '.json',
-	isTemplateImport: boolean = false,
 	modalTitleKey: string = 'import'
 ): Promise<void> {
 	const modal = document.getElementById(modalId);
@@ -101,28 +99,21 @@ export async function showImportModal(
 	}
 
 	function handleFile(file: File): void {
-		if (isTemplateImport) {
-			importTemplateFile(file);
-			cleanupModal();
-			hideModal(modal);
-		} else {
-			const reader = new FileReader();
-			reader.onload = (event: ProgressEvent<FileReader>) => {
-				const content = event.target?.result as string;
-				if (jsonTextarea) {
-					jsonTextarea.value = content;
-				}
-				// Immediately import the file
-				importFunction(content).then(() => {
-					cleanupModal();
-					hideModal(modal);
-				}).catch((error) => {
-					console.error('Error parsing imported template:', error);
-					alert(getMessage('failedToImportTemplate'));
-				});
-			};
-			reader.readAsText(file);
-		}
+		const reader = new FileReader();
+		reader.onload = (event: ProgressEvent<FileReader>) => {
+			const content = event.target?.result as string;
+			if (jsonTextarea) {
+				jsonTextarea.value = content;
+			}
+			importFunction(content).then(() => {
+				cleanupModal();
+				hideModal(modal);
+			}).catch((error) => {
+				console.error('Import failed:', error);
+				alert(getMessage('importFailed'));
+			});
+		};
+		reader.readAsText(file);
 	}
 
 	function handleCancel(): void {

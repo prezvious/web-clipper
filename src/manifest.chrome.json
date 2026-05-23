@@ -1,10 +1,10 @@
 {
 	"manifest_version": 3,
 	"default_locale": "en",
-	"name": "Obsidian Web Clipper",
+	"name": "Hexel Capture",
 	"homepage_url": "https://obsidian.md/",
 	"version": "1.6.2",
-	"description": "Save and highlight web pages in a private and durable format that you can access offline. The official extension for Obsidian.",
+	"description": "Download readable web pages as durable Markdown files.",
 	"permissions": [
 		"activeTab",
 		"commands",
@@ -20,6 +20,11 @@
 		"https://*/*"
 	],
 	"action": {
+		"default_icon": {
+			"16": "icons/icon16.png",
+			"48": "icons/icon48.png",
+			"128": "icons/icon128.png"
+		}
 	},
 	"options_ui": {
 		"page": "settings.html",
@@ -41,7 +46,7 @@
 	],
 	"web_accessible_resources": [
 		{
-			"resources": ["reader.css", "reader-script.js", "browser-polyfill.min.js", "style.css", "side-panel.html", "flatten-shadow-dom.js", "highlighter.css"],
+			"resources": ["reader.css", "reader-script.js", "browser-polyfill.min.js", "style.css", "flatten-shadow-dom.js", "highlighter.css"],
 			"extension_ids": ["*"],
 			"matches": [ "*://*/*" ]
 		}

@@ -18,7 +18,7 @@
 		"message": "Lägg till leverantör"
 	},
 	"addToObsidian": {
-		"message": "Lägg till i Obsidian"
+		"message": "Lägg till i Cognitea"
 	},
 	"addVaultPlaceholder": {
 		"message": "Tryck på retur för att lägga till ett valv"
@@ -45,7 +45,7 @@
 		"message": "Ingen API-nyckel"
 	},
 	"apiKeysWarning": {
-		"message": "Genom att använda en extern leverantör godkänner du deras villkor och sekretesspolicy. Tolkningsförfrågningar skickas direkt till leverantören du väljer. Obsidian samlar inte in eller lagrar någon data om dina förfrågningar."
+		"message": "Genom att använda en extern leverantör godkänner du deras villkor och sekretesspolicy. Tolkningsförfrågningar skickas direkt till leverantören du väljer. Cognitea samlar inte in eller lagrar någon data om dina förfrågningar."
 	},
 	"appendToDaily": {
 		"message": "Lägg till i daglig anteckning, i slutet"
@@ -96,7 +96,7 @@
 		"message": "Klippbeteende"
 	},
 	"clipBehaviorDescription": {
-		"message": "Välj hur markerat innehåll sparas till Obsidian. Definierar variabeln $strong_start${{content}}$strong_end$.",
+		"message": "Välj hur markerat innehåll sparas till Cognitea. Definierar variabeln $strong_start${{content}}$strong_end$.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -107,7 +107,7 @@
 		}
 	},
 	"clipboardError": {
-		"message": "Obsidian kan inte komma åt ditt urklipp. Prova felsökningsinstruktionerna här: $1",
+		"message": "Cognitea kan inte komma åt ditt urklipp. Prova felsökningsinstruktionerna här: $1",
 		"placeholders": {
 			"1": {
 				"content": "$1"
@@ -118,7 +118,7 @@
 		"message": "Stäng"
 	},
 	"commandOpenClipper": {
-		"message": "Öppna Obsidian Clipper"
+		"message": "Download page as Markdown"
 	},
 	"commandQuickClip": {
 		"message": "Snabbklipp"
@@ -196,7 +196,7 @@
 		"message": "Duplicera"
 	},
 	"earlyAccessDescription": {
-		"message": "Använd funktioner som kräver den senaste $link_start$early access-versionen$link_end$ av Obsidian. Kräver för närvarande Obsidian 1.7.2 eller senare.",
+		"message": "Använd funktioner som kräver den senaste $link_start$early access-versionen$link_end$ av Cognitea. Kräver för närvarande Cognitea 1.7.2 eller senare.",
 		"placeholders": {
 			"link_end": {
 				"content": "</a>"
@@ -225,7 +225,7 @@
 		"message": "Inbäddad"
 	},
 	"enableHighlighterDescription": {
-		"message": "Markera innehåll på webbsidor som du kan spara till Obsidian."
+		"message": "Markera innehåll på webbsidor som du kan spara till Cognitea."
 	},
 	"enableInterpreter": {
 		"message": "Aktivera tolk"
@@ -272,7 +272,7 @@
 		"message": "Exportera egenskaper"
 	},
 	"exportPropertiesDescription": {
-		"message": "Spara Web Clipper-egenskaper till en $strong_start$types.json$strong_end$-fil som kan importeras till ditt Obsidian-valv eller till Web Clipper på andra enheter.",
+		"message": "Spara Hexel Capture-egenskaper till en $strong_start$types.json$strong_end$-fil som kan importeras till ditt Cognitea-valv eller till Hexel Capture på andra enheter.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -283,10 +283,10 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "Spara innehåll från webben i ett privat och hållbart format som du kan komma åt offline. Den officiella webbläsartillägget för Obsidian."
+		"message": "Spara innehåll från webben i ett privat och hållbart format som du kan komma åt offline. Den officiella webbläsartillägget för Cognitea."
 	},
 	"extensionName": {
-		"message": "Obsidian Web Clipper"
+		"message": "Hexel Capture"
 	},
 	"failedToCopyText": {
 		"message": "Det gick inte att kopiera texten"
@@ -337,7 +337,7 @@
 		"message": "Återkoppling"
 	},
 	"feedbackDescription": {
-		"message": "Hur kan vi förbättra Web Clipper? Besök vår hjälpsida där du kan rapportera buggar, föreslå funktioner och få hjälp med vanliga problem."
+		"message": "Hur kan vi förbättra Hexel Capture? Besök vår hjälpsida där du kan rapportera buggar, föreslå funktioner och få hjälp med vanliga problem."
 	},
 	"feedbackTitle": {
 		"message": "Tack för din återkoppling"
@@ -358,7 +358,7 @@
 		"message": "Hjälp"
 	},
 	"helpDescription": {
-		"message": "Lär dig hur du använder Web Clipper och få hjälp med felsökning."
+		"message": "Lär dig hur du använder Hexel Capture och få hjälp med felsökning."
 	},
 	"highlightInline": {
 		"message": "Markera sidinnehållet"
@@ -409,7 +409,7 @@
 		"message": "Importera egenskaper"
 	},
 	"importPropertiesDescription": {
-		"message": "För att importera dina egenskaper från Obsidian, hitta $strong_1_start$types.json$strong_1_end$-filen i mappen $strong_2_start$.obsidian$strong_2_end$ i ditt valv. Observera att denna mapp är dold som standard på de flesta operativsystem.",
+		"message": "För att importera dina egenskaper från Cognitea, hitta $strong_1_start$types.json$strong_1_end$-filen i mappen $strong_2_start$.obsidian$strong_2_end$ i ditt valv. Observera att denna mapp är dold som standard på de flesta operativsystem.",
 		"placeholders": {
 			"strong_1_end": {
 				"content": "</strong>"
@@ -467,7 +467,7 @@
 		"message": "Äldre läge"
 	},
 	"legacyModeDescription": {
-		"message": "Använder URI-klippmetoden som är kompatibel med Obsidian 1.6.7 eller tidigare. Observera att längden på innehållet du kan klippa är begränsad av din webbläsare och operativsystem. Vissa sidor kan misslyckas utan felmeddelanden."
+		"message": "Använder URI-klippmetoden som är kompatibel med Cognitea 1.6.7 eller tidigare. Observera att längden på innehållet du kan klippa är begränsad av din webbläsare och operativsystem. Vissa sidor kan misslyckas utan felmeddelanden."
 	},
 	"loadArticle": {
 		"message": "Läs artikel"
@@ -556,7 +556,7 @@
 		"message": "Öppna"
 	},
 	"openBehaviorDescription": {
-		"message": "Välj hur Web Clipper öppnas som standard."
+		"message": "Välj hur Hexel Capture öppnas som standard."
 	},
 	"openBehaviorTitle": {
 		"message": "Öppningsbeteende"
@@ -694,7 +694,7 @@
 		"message": "Leverantörer"
 	},
 	"rateExtensionDescription": {
-		"message": "Gillar du Web Clipper? Hjälp oss genom att ge det ett betyg."
+		"message": "Gillar du Hexel Capture? Hjälp oss genom att ge det ett betyg."
 	},
 	"reader": {
 		"message": "Läsare"
@@ -958,7 +958,7 @@
 		"message": "Spara klippt anteckning utan att öppna den"
 	},
 	"silentOpenDescription": {
-		"message": "Klippta anteckningar kommer att sparas men inte öppnas som en ny flik. Obsidian kommer fortfarande att flyttas till förgrunden."
+		"message": "Klippta anteckningar kommer att sparas men inte öppnas som en ny flik. Cognitea kommer fortfarande att flyttas till förgrunden."
 	},
 	"sort": {
 		"message": "Sortera"
@@ -1053,7 +1053,7 @@
 		"message": "Valv"
 	},
 	"vaultsDescription": {
-		"message": "Som standard sparas klippta anteckningar i det för närvarande öppna valvet. Du kan lägga till valv här om du vill ha möjlighet att spara i olika valv. Valvnamn måste exakt matcha namnet på Obsidian-valvet. Tryck $strong_start$retur$strong_end$ för att lägga till ett valv.",
+		"message": "Som standard sparas klippta anteckningar i det för närvarande öppna valvet. Du kan lägga till valv här om du vill ha möjlighet att spara i olika valv. Valvnamn måste exakt matcha namnet på Cognitea-valvet. Tryck $strong_start$retur$strong_end$ för att lägga till ett valv.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"

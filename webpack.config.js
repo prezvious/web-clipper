@@ -39,7 +39,6 @@ module.exports = (env, argv) => {
 	const mainConfig = {
 		mode: argv.mode,
 		entry: {
-			popup: './src/core/popup.ts',
 			settings: './src/core/settings.ts',
 			highlights: './src/core/highlights.ts',
 			'reader-page': './src/core/reader-view.ts',
@@ -54,6 +53,7 @@ module.exports = (env, argv) => {
 			path: path.resolve(__dirname, outputDir),
 			filename: '[name].js',
 			module: false,
+			clean: true,
 		},
 		devtool: isProduction ? false : 'source-map',
 		optimization: {
@@ -143,8 +143,6 @@ module.exports = (env, argv) => {
 							  (isSafari ? "src/manifest.safari.json" : "src/manifest.chrome.json"), 
 						to: "manifest.json" 
 					},
-					{ from: "src/popup.html", to: "popup.html" },
-					{ from: "src/side-panel.html", to: "side-panel.html" },
 					{ from: "src/settings.html", to: "settings.html" },
 					{ from: "src/highlights.html", to: "highlights.html" },
 					{ from: "src/reader.html", to: "reader.html" },
@@ -174,7 +172,7 @@ module.exports = (env, argv) => {
 			...(isProduction ? [
 				new ZipPlugin({
 					path: path.resolve(__dirname, 'builds'),
-					filename: `obsidian-web-clipper-${package.version}-${browserName}.zip`,
+					filename: `hexel-capture-${package.version}-${browserName}.zip`,
 				})
 			] : [])
 		]

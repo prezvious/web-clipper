@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { isValidUrl, isBlankPage, isRestrictedUrl } from './active-tab-manager';
+import { isValidUrl, isBlankPage, isRestrictedUrl, isNormalPageUrl } from './active-tab-manager';
 
 describe('isValidUrl', () => {
 	test('returns true for http URLs', () => {
@@ -80,5 +80,26 @@ describe('isRestrictedUrl', () => {
 	test('handles invalid URLs gracefully', () => {
 		expect(isRestrictedUrl('')).toBe(false);
 		expect(isRestrictedUrl('not-a-url')).toBe(false);
+	});
+});
+
+describe('isNormalPageUrl', () => {
+	test('returns true for normal http/https URLs', () => {
+		expect(isNormalPageUrl('https://example.com')).toBe(true);
+		expect(isNormalPageUrl('http://example.com/page')).toBe(true);
+	});
+
+	test('returns true for local file URLs', () => {
+		expect(isNormalPageUrl('file:///C:/users/file.html')).toBe(true);
+	});
+
+	test('returns false for blank pages', () => {
+		expect(isNormalPageUrl('about:blank')).toBe(false);
+		expect(isNormalPageUrl('chrome://newtab/')).toBe(false);
+	});
+
+	test('returns false for empty or undefined URLs', () => {
+		expect(isNormalPageUrl('')).toBe(false);
+		expect(isNormalPageUrl(undefined)).toBe(false);
 	});
 });

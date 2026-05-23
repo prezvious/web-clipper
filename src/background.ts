@@ -1,9 +1,9 @@
 import browser from 'webextension-polyfill';
 import { detectBrowser } from './utils/browser-detection';
-import { updateCurrentActiveTab, isValidUrl, isBlankPage, isNormalPageUrl } from './utils/active-tab-manager';
+import { isValidUrl, isBlankPage, isNormalPageUrl } from './utils/active-tab-manager';
 import { TextHighlightData } from './utils/highlighter';
 import { debounce } from './utils/debounce';
-import { HistoryEntry, Settings, SavedClipRecord, SavedClipsMap } from './types/types';
+import { HistoryEntry, SavedClipRecord, SavedClipsMap } from './types/types';
 import { debugLog } from './utils/debug';
 import { buildSavedClipRecord, normalizeClipUrl } from './utils/saved-clips';
 
@@ -143,12 +143,10 @@ if (typeof browser !== 'undefined' && browser.webRequest?.onBeforeSendHeaders) {
 	} catch { /* webRequest not available */ }
 }
 
-let sidePanelOpenWindows: Set<number> = new Set();
 let highlighterModeState: { [tabId: number]: boolean } = {};
 let readerModeState: { [tabId: number]: boolean } = {};
 let hasHighlights = false;
 let isContextMenuCreating = false;
-let popupPorts: { [tabId: number]: browser.Runtime.Port } = {};
 
 async function injectContentScript(tabId: number): Promise<void> {
 	if (browser.scripting) {
@@ -380,12 +378,6 @@ async function captureCurrentTabMarkdown(tab?: browser.Tabs.Tab): Promise<void> 
 	}
 
 	try {
-		const duplicate = await getDuplicateClipForUrl(currentTab.url);
-		if (duplicate) {
-			await notifyTabClipStatus(currentTab.id, 'duplicate', duplicate, true);
-			return;
-		}
-
 		await ensureContentScriptLoadedInBackground(currentTab.id);
 		const response = await browser.tabs.sendMessage(currentTab.id, { action: "extractMarkdownForDownload" }) as ExtractMarkdownForDownloadResponse;
 		if (!response?.success) {
@@ -483,43 +475,11 @@ async function initialize() {
 		// Enable Origin header for YouTube innertube API requests
 		await enableYouTubeInnertubeRule();
 
-		// Set up action popup based on openBehavior setting
-		await updateActionPopup();
-
 		debugLog('Clipper', 'Background script initialized successfully');
 	} catch (error) {
 		console.error('Error initializing background script:', error);
 	}
 }
-
-// Check if a popup is open for a given tab
-function isPopupOpen(tabId: number): boolean {
-	return popupPorts.hasOwnProperty(tabId);
-}
-
-browser.runtime.onConnect.addListener((port) => {
-	if (port.name === 'popup') {
-		const tabId = port.sender?.tab?.id;
-		if (tabId) {
-			popupPorts[tabId] = port;
-			port.onDisconnect.addListener(() => {
-				delete popupPorts[tabId];
-			});
-		}
-	}
-});
-
-async function sendMessageToPopup(tabId: number, message: any): Promise<void> {
-	if (isPopupOpen(tabId)) {
-		try {
-			await popupPorts[tabId].postMessage(message);
-		} catch (error) {
-			console.warn(`Error sending message to popup for tab ${tabId}:`, error);
-		}
-	}
-}
-
-
 
 // Safari: route fetch through native messaging (URLSession in Swift).
 // Called from the background script where sendNativeMessage works reliably.
@@ -686,24 +646,10 @@ browser.runtime.onMessage.addListener((request: unknown, sender: browser.Runtime
 			return true;
 		}
 
-		if (typedRequest.action === "sidePanelOpened") {
-			if (sender.tab && sender.tab.windowId) {
-				sidePanelOpenWindows.add(sender.tab.windowId);
-				updateCurrentActiveTab(sender.tab.windowId);
-			}
-		}
-
-		if (typedRequest.action === "sidePanelClosed") {
-			if (sender.tab && sender.tab.windowId) {
-				sidePanelOpenWindows.delete(sender.tab.windowId);
-			}
-		}
-
 		if (typedRequest.action === "highlighterModeChanged" && sender.tab && typedRequest.isActive !== undefined) {
 			const tabId = sender.tab.id;
 			if (tabId) {
 				highlighterModeState[tabId] = typedRequest.isActive;
-				sendMessageToPopup(tabId, { action: "updatePopupHighlighterUI", isActive: typedRequest.isActive });
 				debouncedUpdateContextMenu(tabId);
 			}
 		}
@@ -753,7 +699,7 @@ browser.runtime.onMessage.addListener((request: unknown, sender: browser.Runtime
 			return true;
 		}
 
-		if (typedRequest.action === "openPopup") {
+		if (typedRequest.action === "downloadCurrentTabMarkdown") {
 			captureCurrentTabMarkdown(sender.tab)
 				.then(() => {
 					sendResponse({ success: true });
@@ -791,43 +737,10 @@ browser.runtime.onMessage.addListener((request: unknown, sender: browser.Runtime
 			return true;
 		}
 
-		if (typedRequest.action === "getActiveTabAndToggleIframe") {
-			browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
-				const currentTab = tabs[0];
-				if (currentTab && currentTab.id) {
-					try {
-						await routeMessageToTab(currentTab.id, { action: "toggle-iframe" });
-						sendResponse({success: true});
-					} catch (error) {
-						console.error('Error sending toggle-iframe message:', error);
-						sendResponse({success: false, error: error instanceof Error ? error.message : String(error)});
-					}
-				} else {
-					sendResponse({success: false, error: 'No active tab found'});
-				}
-			});
-			return true;
-		}
-
-		if (typedRequest.action === "toggleIframe") {
-			const tab = sender.tab;
-			if (tab?.id) {
-				routeMessageToTab(tab.id, { action: "toggle-iframe" })
-					.then(() => sendResponse({ success: true }))
-					.catch((error) => {
-						console.error('Error toggling iframe:', error);
-						sendResponse({ success: false, error: error instanceof Error ? error.message : String(error) });
-					});
-			} else {
-				sendResponse({ success: false, error: 'Cannot open iframe on this page' });
-			}
-			return true;
-		}
-
 		if (typedRequest.action === "getActiveTab") {
 			browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
 				let currentTab = tabs[0];
-				// Fallback for when currentWindow has no tabs (e.g., debugging popup in DevTools)
+				// Fallback for when currentWindow has no active tabs.
 				if (!currentTab || !currentTab.id) {
 					const allActiveTabs = await browser.tabs.query({active: true});
 					currentTab = allActiveTabs.find(tab =>
@@ -921,7 +834,7 @@ browser.runtime.onMessage.addListener((request: unknown, sender: browser.Runtime
 				injectContentScript(tabId)
 					.then(() => sendResponse({ success: true }))
 					.catch((error) => {
-						console.error('[Obsidian Clipper] forceInjectContentScript failed:', error);
+						console.error('[Hexel Capture] forceInjectContentScript failed:', error);
 						sendResponse({ success: false, error: error instanceof Error ? error.message : String(error) });
 					});
 				return true;
@@ -938,7 +851,7 @@ browser.runtime.onMessage.addListener((request: unknown, sender: browser.Runtime
 				routeMessageToTab(tabId, message).then((response) => {
 					sendResponse(response);
 				}).catch((error) => {
-					console.error('[Obsidian Clipper] Error sending message to tab:', error);
+					console.error('[Hexel Capture] Error sending message to tab:', error);
 					sendResponse({
 						success: false,
 						error: error instanceof Error ? error.message : String(error)
@@ -1069,7 +982,7 @@ const debouncedUpdateContextMenu = debounce(async (tabId: number) => {
 			contexts: browser.Menus.ContextType[];
 		}[] = [
 				{
-					id: "open-obsidian-clipper",
+					id: "download-page-markdown",
 					title: "Download page as Markdown",
 					contexts: ["page", "selection", "image", "video", "audio"]
 				},
@@ -1106,7 +1019,7 @@ const debouncedUpdateContextMenu = debounce(async (tabId: number) => {
 }, 100); // 100ms debounce time
 
 browser.contextMenus.onClicked.addListener(async (info, tab) => {
-	if (info.menuItemId === "open-obsidian-clipper") {
+	if (info.menuItemId === "download-page-markdown") {
 		await captureCurrentTabMarkdown(tab);
 	} else if (info.menuItemId === "enter-highlighter" && tab && tab.id) {
 		await setHighlighterMode(tab.id, true);
@@ -1130,10 +1043,6 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
 browser.runtime.onInstalled.addListener(() => {
 	debouncedUpdateContextMenu(-1); // Use a dummy tabId for initial creation
 });
-
-async function isSidePanelOpen(windowId: number): Promise<boolean> {
-	return sidePanelOpenWindows.has(windowId);
-}
 
 type ClipBadgeStatus = 'none' | 'saved' | 'duplicate' | 'failed';
 
@@ -1200,21 +1109,9 @@ async function setupTabListeners() {
 	}
 }
 
-const debouncedPaintHighlights = debounce(async (tabId: number) => {
-	if (!getHighlighterModeForTab(tabId)) {
-		await setHighlighterMode(tabId, false);
-	}
-	await paintHighlights(tabId);
-}, 250);
-
 async function handleTabChange(activeInfo: { tabId: number; windowId?: number }) {
 	const tab = await browser.tabs.get(activeInfo.tabId).catch(() => null);
 	await updateSavedClipIndicators(activeInfo.tabId, tab?.url);
-
-	if (activeInfo.windowId && await isSidePanelOpen(activeInfo.windowId)) {
-		updateCurrentActiveTab(activeInfo.windowId);
-		await debouncedPaintHighlights(activeInfo.tabId);
-	}
 }
 
 async function paintHighlights(tabId: number) {
@@ -1252,14 +1149,12 @@ async function setHighlighterMode(tabId: number, activate: boolean) {
 		highlighterModeState[tabId] = activate;
 		await browser.tabs.sendMessage(tabId, { action: "setHighlighterMode", isActive: activate });
 		debouncedUpdateContextMenu(tabId);
-		await sendMessageToPopup(tabId, { action: "updatePopupHighlighterUI", isActive: activate });
 
 	} catch (error) {
 		console.error('Error setting highlighter mode:', error);
 		// If there's an error, assume highlighter mode should be off
 		highlighterModeState[tabId] = false;
 		debouncedUpdateContextMenu(tabId);
-		await sendMessageToPopup(tabId, { action: "updatePopupHighlighterUI", isActive: false });
 	}
 }
 
@@ -1270,7 +1165,6 @@ async function toggleHighlighterMode(tabId: number): Promise<boolean> {
 		highlighterModeState[tabId] = newMode;
 		await browser.tabs.sendMessage(tabId, { action: "setHighlighterMode", isActive: newMode });
 		debouncedUpdateContextMenu(tabId);
-		await sendMessageToPopup(tabId, { action: "updatePopupHighlighterUI", isActive: newMode });
 		return newMode;
 	} catch (error) {
 		console.error('Error toggling highlighter mode:', error);
@@ -1340,33 +1234,12 @@ async function injectReaderScript(tabId: number) {
 	}
 }
 
-// Capture runs directly from the toolbar; settings stay available through the options page.
-const validOpenBehaviors: Settings['openBehavior'][] = ['popup', 'embedded', 'reader'];
-
-function parseOpenBehavior(raw: string | undefined): Settings['openBehavior'] {
-	return validOpenBehaviors.includes(raw as Settings['openBehavior']) ? raw as Settings['openBehavior'] : 'popup';
-}
-
-async function updateActionPopup(openBehavior?: Settings['openBehavior']): Promise<void> {
-	if (!openBehavior) {
-		const data = await browser.storage.sync.get('general_settings');
-		openBehavior = parseOpenBehavior((data.general_settings as Record<string, string>)?.openBehavior);
-	}
-	currentOpenBehavior = openBehavior;
-	await browser.action.setPopup({ popup: '' });
-}
-
-let currentOpenBehavior: Settings['openBehavior'] = 'popup';
-
 browser.action.onClicked.addListener(async (tab) => {
 	if (!tab?.id || !tab.url || !isValidUrl(tab.url) || isBlankPage(tab.url)) return;
 	await captureCurrentTabMarkdown(tab);
 });
 
 browser.storage.onChanged.addListener((changes, area) => {
-	if (area === 'sync' && changes.general_settings) {
-		updateActionPopup(parseOpenBehavior((changes.general_settings.newValue as Record<string, string>)?.openBehavior));
-	}
 	if ((area === 'local' && changes.savedClips) || (area === 'sync' && changes.general_settings)) {
 		browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
 			const tab = tabs[0];

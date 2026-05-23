@@ -18,7 +18,7 @@
 		"message": "Pridať poskytovateľa"
 	},
 	"addToObsidian": {
-		"message": "Pridať do Obsidianu"
+		"message": "Pridať do Cogniteau"
 	},
 	"addVaultPlaceholder": {
 		"message": "Stlačte Enter na pridanie vaultu"
@@ -45,7 +45,7 @@
 		"message": "Chýba API kľúč"
 	},
 	"apiKeysWarning": {
-		"message": "Používaním externého poskytovateľa súhlasíte s jeho podmienkami a zásadami ochrany súkromia. Požiadavky tlmočníka sa odosielajú priamo poskytovateľovi, ktorého si vyberiete. Obsidian nezhromažďuje ani neukladá žiadne údaje o vašich požiadavkách."
+		"message": "Používaním externého poskytovateľa súhlasíte s jeho podmienkami a zásadami ochrany súkromia. Požiadavky tlmočníka sa odosielajú priamo poskytovateľovi, ktorého si vyberiete. Cognitea nezhromažďuje ani neukladá žiadne údaje o vašich požiadavkách."
 	},
 	"appendToDaily": {
 		"message": "Pridať do dennej poznámky, na koniec"
@@ -96,7 +96,7 @@
 		"message": "Správanie výstrižku"
 	},
 	"clipBehaviorDescription": {
-		"message": "Vyberte, ako sa zvýraznený obsah ukladá do Obsidianu. Definuje premennú $strong_start${{content}}$strong_end$.",
+		"message": "Vyberte, ako sa zvýraznený obsah ukladá do Cogniteau. Definuje premennú $strong_start${{content}}$strong_end$.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -107,7 +107,7 @@
 		}
 	},
 	"clipboardError": {
-		"message": "Obsidian nemá prístup k vašej schránke. Skúste pokyny na riešenie problémov tu: $1",
+		"message": "Cognitea nemá prístup k vašej schránke. Skúste pokyny na riešenie problémov tu: $1",
 		"placeholders": {
 			"1": {
 				"content": "$1"
@@ -118,7 +118,7 @@
 		"message": "Zavrieť"
 	},
 	"commandOpenClipper": {
-		"message": "Otvoriť Obsidian Clipper"
+		"message": "Download page as Markdown"
 	},
 	"commandQuickClip": {
 		"message": "Rýchly výstrižok"
@@ -196,7 +196,7 @@
 		"message": "Duplikovať"
 	},
 	"earlyAccessDescription": {
-		"message": "Používajte funkcie, ktoré vyžadujú najnovšiu $link_start$verziu s predbežným prístupom$link_end$ Obsidianu. Aktuálne vyžaduje Obsidian 1.7.2 alebo novší.",
+		"message": "Používajte funkcie, ktoré vyžadujú najnovšiu $link_start$verziu s predbežným prístupom$link_end$ Cogniteau. Aktuálne vyžaduje Cognitea 1.7.2 alebo novší.",
 		"placeholders": {
 			"link_end": {
 				"content": "</a>"
@@ -225,7 +225,7 @@
 		"message": "Vložené"
 	},
 	"enableHighlighterDescription": {
-		"message": "Zvýrazňujte obsah na webových stránkach, ktorý môžete uložiť do Obsidianu."
+		"message": "Zvýrazňujte obsah na webových stránkach, ktorý môžete uložiť do Cogniteau."
 	},
 	"enableInterpreter": {
 		"message": "Zapnúť tlmočníka"
@@ -272,7 +272,7 @@
 		"message": "Exportovať vlastnosti"
 	},
 	"exportPropertiesDescription": {
-		"message": "Uložiť vlastnosti Web Clippera do súboru $strong_start$types.json$strong_end$, ktorý možno importovať do vášho Obsidian vaultu alebo do Web Clippera na iných zariadeniach.",
+		"message": "Uložiť vlastnosti Hexel Capturea do súboru $strong_start$types.json$strong_end$, ktorý možno importovať do vášho Cognitea vaultu alebo do Hexel Capturea na iných zariadeniach.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -283,10 +283,10 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "Ukladajte obsah z webu v súkromnom a trvácnom formáte, ku ktorému máte prístup aj offline. Oficiálne rozšírenie prehliadača pre Obsidian."
+		"message": "Ukladajte obsah z webu v súkromnom a trvácnom formáte, ku ktorému máte prístup aj offline. Oficiálne rozšírenie prehliadača pre Cognitea."
 	},
 	"extensionName": {
-		"message": "Obsidian Web Clipper"
+		"message": "Hexel Capture"
 	},
 	"failedToCopyText": {
 		"message": "Nepodarilo sa skopírovať text"
@@ -337,7 +337,7 @@
 		"message": "Spätná väzba"
 	},
 	"feedbackDescription": {
-		"message": "Ako môžeme zlepšiť Web Clipper? Navštívte našu stránku pomoci, kde môžete nahlásiť chyby, navrhnúť funkcie a získať pomoc s bežnými problémami."
+		"message": "Ako môžeme zlepšiť Hexel Capture? Navštívte našu stránku pomoci, kde môžete nahlásiť chyby, navrhnúť funkcie a získať pomoc s bežnými problémami."
 	},
 	"feedbackTitle": {
 		"message": "Ďakujeme za vašu spätnú väzbu"
@@ -358,7 +358,7 @@
 		"message": "Pomoc"
 	},
 	"helpDescription": {
-		"message": "Zistite, ako používať Web Clipper, a získajte pomoc pri riešení problémov."
+		"message": "Zistite, ako používať Hexel Capture, a získajte pomoc pri riešení problémov."
 	},
 	"highlightInline": {
 		"message": "Zvýrazniť obsah stránky"
@@ -409,7 +409,7 @@
 		"message": "Importovať vlastnosti"
 	},
 	"importPropertiesDescription": {
-		"message": "Ak chcete importovať vlastnosti z Obsidianu, nájdite súbor $strong_1_start$types.json$strong_1_end$ v priečinku $strong_2_start$.obsidian$strong_2_end$ vo vašom vaulte. Upozorňujeme, že tento priečinok je vo väčšine operačných systémov predvolene skrytý.",
+		"message": "Ak chcete importovať vlastnosti z Cogniteau, nájdite súbor $strong_1_start$types.json$strong_1_end$ v priečinku $strong_2_start$.obsidian$strong_2_end$ vo vašom vaulte. Upozorňujeme, že tento priečinok je vo väčšine operačných systémov predvolene skrytý.",
 		"placeholders": {
 			"strong_1_end": {
 				"content": "</strong>"
@@ -467,7 +467,7 @@
 		"message": "Režim kompatibility"
 	},
 	"legacyModeDescription": {
-		"message": "Používa metódu orezávania cez URI kompatibilnú s Obsidianom 1.6.7 alebo starším. Upozorňujeme, že dĺžka obsahu, ktorý môžete uložiť, je obmedzená vaším prehliadačom a OS. Niektoré stránky môžu zlyhať bez akýchkoľvek chýb."
+		"message": "Používa metódu orezávania cez URI kompatibilnú s Cogniteaom 1.6.7 alebo starším. Upozorňujeme, že dĺžka obsahu, ktorý môžete uložiť, je obmedzená vaším prehliadačom a OS. Niektoré stránky môžu zlyhať bez akýchkoľvek chýb."
 	},
 	"loadArticle": {
 		"message": "Čítať článok"
@@ -556,7 +556,7 @@
 		"message": "Otvoriť"
 	},
 	"openBehaviorDescription": {
-		"message": "Vyberte, ako sa má Web Clipper predvolene otvárať."
+		"message": "Vyberte, ako sa má Hexel Capture predvolene otvárať."
 	},
 	"openBehaviorTitle": {
 		"message": "Správanie pri otvorení"
@@ -694,7 +694,7 @@
 		"message": "Poskytovatelia"
 	},
 	"rateExtensionDescription": {
-		"message": "Páči sa vám Web Clipper? Pomôžte nám tým, že mu dáte hodnotenie."
+		"message": "Páči sa vám Hexel Capture? Pomôžte nám tým, že mu dáte hodnotenie."
 	},
 	"reader": {
 		"message": "Čítačka"
@@ -958,7 +958,7 @@
 		"message": "Uložiť výstrižok bez jeho otvorenia"
 	},
 	"silentOpenDescription": {
-		"message": "Výstrižky sa uložia, ale neotvoria sa v novej karte. Obsidian sa aj tak presunie do popredia."
+		"message": "Výstrižky sa uložia, ale neotvoria sa v novej karte. Cognitea sa aj tak presunie do popredia."
 	},
 	"sort": {
 		"message": "Zoradiť"
@@ -1053,7 +1053,7 @@
 		"message": "Vaulty"
 	},
 	"vaultsDescription": {
-		"message": "Predvolene sa výstrižky ukladajú do aktuálne otvoreného vaultu. Ak chcete mať možnosť ukladať do rôznych vaultov, môžete ich tu pridať. Názvy vaultov sa musia presne zhodovať s názvom Obsidian vaultu. Stlačte $strong_start$Enter$strong_end$ na pridanie vaultu.",
+		"message": "Predvolene sa výstrižky ukladajú do aktuálne otvoreného vaultu. Ak chcete mať možnosť ukladať do rôznych vaultov, môžete ich tu pridať. Názvy vaultov sa musia presne zhodovať s názvom Cognitea vaultu. Stlačte $strong_start$Enter$strong_end$ na pridanie vaultu.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"

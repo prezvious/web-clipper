@@ -18,7 +18,7 @@
 		"message": "Add provider"
 	},
 	"addToObsidian": {
-		"message": "Add to Obsidian"
+		"message": "Add to Cognitea"
 	},
 	"openNote": {
 		"message": "Open note"
@@ -51,7 +51,7 @@
 		"message": "No API key"
 	},
 	"apiKeysWarning": {
-		"message": "By using an external provider you agree to their terms and privacy policy. Interpreter requests are sent directly to the provider you choose. Obsidian does not gather or store any data about your requests."
+		"message": "By using an external provider you agree to their terms and privacy policy. Interpreter requests are sent directly to the provider you choose. Cognitea does not gather or store any data about your requests."
 	},
 	"appendToDaily": {
 		"message": "Add to daily note, at the bottom"
@@ -102,7 +102,7 @@
 		"message": "Clip behavior"
 	},
 	"clipBehaviorDescription": {
-		"message": "Choose how highlighted content is saved to Obsidian. Defines the $strong_start${{content}}$strong_end$ variable.",
+		"message": "Choose how highlighted content is saved to Cognitea. Defines the $strong_start${{content}}$strong_end$ variable.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -113,7 +113,7 @@
 		}
 	},
 	"clipboardError": {
-		"message": "Obsidian is not able to access your clipboard. Try the troubleshooting instructions here: $1",
+		"message": "Cognitea is not able to access your clipboard. Try the troubleshooting instructions here: $1",
 		"placeholders": {
 			"1": {
 				"content": "$1"
@@ -202,7 +202,7 @@
 		"message": "Duplicate"
 	},
 	"earlyAccessDescription": {
-		"message": "Use features that require the latest $link_start$early access version$link_end$ of Obsidian. Currently requires Obsidian 1.7.2 or later.",
+		"message": "Use features that require the latest $link_start$early access version$link_end$ of Cognitea. Currently requires Cognitea 1.7.2 or later.",
 		"placeholders": {
 			"link_end": {
 				"content": "</a>"
@@ -231,7 +231,7 @@
 		"message": "Embedded"
 	},
 	"enableHighlighterDescription": {
-		"message": "Highlight content on web pages that you can save to Obsidian."
+		"message": "Highlight content on web pages that you can save to Cognitea."
 	},
 	"enableInterpreter": {
 		"message": "Enable interpreter"
@@ -278,7 +278,7 @@
 		"message": "Export properties"
 	},
 	"exportPropertiesDescription": {
-		"message": "Save Web Clipper properties to a $strong_start$types.json$strong_end$ file that can be imported into your Obsidian vault, or into Web Clipper on other devices.",
+		"message": "Save Hexel Capture properties to a $strong_start$types.json$strong_end$ file that can be imported into your Cognitea vault, or into Hexel Capture on other devices.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -289,10 +289,10 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "Save content from the web in a private and durable format that you can access offline. The official browser extension for Obsidian."
+		"message": "Save content from the web in a private and durable format that you can access offline. The official browser extension for Cognitea."
 	},
 	"extensionName": {
-		"message": "Obsidian Web Clipper"
+		"message": "Hexel Capture"
 	},
 	"failedToCopyText": {
 		"message": "Failed to copy text"
@@ -343,7 +343,7 @@
 		"message": "Feedback"
 	},
 	"feedbackDescription": {
-		"message": "How can we improve Web Clipper? Please visit our help page, where you can report bugs, suggest features, and get help with common issues."
+		"message": "How can we improve Hexel Capture? Please visit our help page, where you can report bugs, suggest features, and get help with common issues."
 	},
 	"feedbackTitle": {
 		"message": "Thanks for your feedback"
@@ -364,7 +364,7 @@
 		"message": "Help"
 	},
 	"helpDescription": {
-		"message": "Learn how to use Web Clipper and get help troubleshooting."
+		"message": "Learn how to use Hexel Capture and get help troubleshooting."
 	},
 	"highlightInline": {
 		"message": "Highlight the page content"
@@ -415,7 +415,7 @@
 		"message": "Import properties"
 	},
 	"importPropertiesDescription": {
-		"message": "To import your properties from Obsidian, locate the $strong_1_start$types.json$strong_1_end$ file in the $strong_2_start$.obsidian$strong_2_end$ folder within your vault. Note this folder is hidden by default on most operating systems.",
+		"message": "To import your properties from Cognitea, locate the $strong_1_start$types.json$strong_1_end$ file in the $strong_2_start$.obsidian$strong_2_end$ folder within your vault. Note this folder is hidden by default on most operating systems.",
 		"placeholders": {
 			"strong_1_end": {
 				"content": "</strong>"
@@ -473,7 +473,7 @@
 		"message": "Legacy mode"
 	},
 	"legacyModeDescription": {
-		"message": "Uses the URI clipping method compatible with Obsidian 1.6.7 or earlier. Note that the length of the content you can clip is limited by your browser and OS. Some pages may fail without any errors."
+		"message": "Uses the URI clipping method compatible with Cognitea 1.6.7 or earlier. Note that the length of the content you can clip is limited by your browser and OS. Some pages may fail without any errors."
 	},
 	"loadArticle": {
 		"message": "Read article"
@@ -562,7 +562,7 @@
 		"message": "Open"
 	},
 	"openBehaviorDescription": {
-		"message": "Choose how Web Clipper opens by default."
+		"message": "Choose how Hexel Capture opens by default."
 	},
 	"openBehaviorTitle": {
 		"message": "Open behavior"
@@ -700,7 +700,7 @@
 		"message": "Providers"
 	},
 	"rateExtensionDescription": {
-		"message": "Are you enjoying Web Clipper? Help us by giving it a rating."
+		"message": "Are you enjoying Hexel Capture? Help us by giving it a rating."
 	},
 	"reader": {
 		"message": "Reader"
@@ -964,7 +964,7 @@
 		"message": "Save clipped note without opening it"
 	},
 	"silentOpenDescription": {
-		"message": "Clipped notes will be saved but will not open as a new tab. Obsidian will still be brought to the foreground."
+		"message": "Clipped notes will be saved but will not open as a new tab. Cognitea will still be brought to the foreground."
 	},
 	"sort": {
 		"message": "Sort"
@@ -1059,7 +1059,7 @@
 		"message": "Vaults"
 	},
 	"vaultsDescription": {
-		"message": "By default, clipped notes are saved to the currently open vault. You can add vaults here if you want the option to save to different vaults. Vault names must exactly match the name of the Obsidian vault. Press $strong_start$enter$strong_end$ to add a vault.",
+		"message": "By default, clipped notes are saved to the currently open vault. You can add vaults here if you want the option to save to different vaults. Vault names must exactly match the name of the Cognitea vault. Press $strong_start$enter$strong_end$ to add a vault.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -1071,5 +1071,26 @@
 	},
 	"version": {
 		"message": "Version"
+	},
+	"bulkExtract": {
+		"message": "Bulk extract tabs"
+	},
+	"bulkExtractTitle": {
+		"message": "Bulk Extract Tabs"
+	},
+	"bulkExtractProgress": {
+		"message": "Extracting tabs..."
+	},
+	"bulkExtractSelectAll": {
+		"message": "Select all"
+	},
+	"bulkExtractDeselectAll": {
+		"message": "Deselect all"
+	},
+	"bulkExtractButton": {
+		"message": "Extract $1 selected tabs"
+	},
+	"bulkExtractNoTabs": {
+		"message": "No valid tabs open in current window."
 	}
 }

@@ -18,7 +18,7 @@
 		"message": "Provider toevoegen"
 	},
 	"addToObsidian": {
-		"message": "Toevoegen aan Obsidian"
+		"message": "Toevoegen aan Cognitea"
 	},
 	"addVaultPlaceholder": {
 		"message": "Druk op Enter om een kluis toe te voegen"
@@ -45,7 +45,7 @@
 		"message": "Geen API-sleutel"
 	},
 	"apiKeysWarning": {
-		"message": "Door een externe provider te gebruiken ga je akkoord met hun voorwaarden en privacybeleid. Interpreter-verzoeken worden direct naar de provider van jouw keuze gestuurd. Obsidian verzamelt of bewaart geen gegevens over je verzoeken."
+		"message": "Door een externe provider te gebruiken ga je akkoord met hun voorwaarden en privacybeleid. Interpreter-verzoeken worden direct naar de provider van jouw keuze gestuurd. Cognitea verzamelt of bewaart geen gegevens over je verzoeken."
 	},
 	"appendToDaily": {
 		"message": "Toevoegen aan dagelijkse notitie, onderaan"
@@ -96,7 +96,7 @@
 		"message": "Clip-gedrag"
 	},
 	"clipBehaviorDescription": {
-		"message": "Kies hoe gemarkeerde inhoud wordt opgeslagen in Obsidian. Definieert de $strong_start${{content}}$strong_end$ variabele.",
+		"message": "Kies hoe gemarkeerde inhoud wordt opgeslagen in Cognitea. Definieert de $strong_start${{content}}$strong_end$ variabele.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -107,7 +107,7 @@
 		}
 	},
 	"clipboardError": {
-		"message": "Obsidian heeft geen toegang tot je klembord. Probeer de instructies voor probleemoplossing hier: $1",
+		"message": "Cognitea heeft geen toegang tot je klembord. Probeer de instructies voor probleemoplossing hier: $1",
 		"placeholders": {
 			"1": {
 				"content": "$1"
@@ -118,7 +118,7 @@
 		"message": "Sluiten"
 	},
 	"commandOpenClipper": {
-		"message": "Open Obsidian Clipper"
+		"message": "Download page as Markdown"
 	},
 	"commandQuickClip": {
 		"message": "Snel knippen"
@@ -196,7 +196,7 @@
 		"message": "Dupliceren"
 	},
 	"earlyAccessDescription": {
-		"message": "Gebruik functies die de nieuwste $link_start$early access versie$link_end$ van Obsidian vereisen. Momenteel is Obsidian 1.7.2 of hoger vereist.",
+		"message": "Gebruik functies die de nieuwste $link_start$early access versie$link_end$ van Cognitea vereisen. Momenteel is Cognitea 1.7.2 of hoger vereist.",
 		"placeholders": {
 			"link_end": {
 				"content": "</a>"
@@ -225,7 +225,7 @@
 		"message": "Ingesloten"
 	},
 	"enableHighlighterDescription": {
-		"message": "Markeer inhoud op webpagina's die je kunt opslaan in Obsidian."
+		"message": "Markeer inhoud op webpagina's die je kunt opslaan in Cognitea."
 	},
 	"enableInterpreter": {
 		"message": "Interpreter inschakelen"
@@ -272,7 +272,7 @@
 		"message": "Eigenschappen exporteren"
 	},
 	"exportPropertiesDescription": {
-		"message": "Sla Web Clipper eigenschappen op in een $strong_start$types.json$strong_end$ bestand dat kan worden geïmporteerd in je Obsidian kluis of in Web Clipper op andere apparaten.",
+		"message": "Sla Hexel Capture eigenschappen op in een $strong_start$types.json$strong_end$ bestand dat kan worden geïmporteerd in je Cognitea kluis of in Hexel Capture op andere apparaten.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -283,10 +283,10 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "Sla webinhoud op in een privé en duurzaam formaat dat je offline kunt bekijken. De officiële browserextensie voor Obsidian."
+		"message": "Sla webinhoud op in een privé en duurzaam formaat dat je offline kunt bekijken. De officiële browserextensie voor Cognitea."
 	},
 	"extensionName": {
-		"message": "Obsidian Web Clipper"
+		"message": "Hexel Capture"
 	},
 	"failedToCopyText": {
 		"message": "Tekst kopiëren mislukt"
@@ -337,7 +337,7 @@
 		"message": "Feedback"
 	},
 	"feedbackDescription": {
-		"message": "Hoe kunnen we Web Clipper verbeteren? Bezoek alstublieft onze hulppagina, waar u bugs kunt melden, functies kunt voorstellen en hulp kunt krijgen bij veelvoorkomende problemen."
+		"message": "Hoe kunnen we Hexel Capture verbeteren? Bezoek alstublieft onze hulppagina, waar u bugs kunt melden, functies kunt voorstellen en hulp kunt krijgen bij veelvoorkomende problemen."
 	},
 	"feedbackTitle": {
 		"message": "Bedankt voor uw feedback"
@@ -358,7 +358,7 @@
 		"message": "Help"
 	},
 	"helpDescription": {
-		"message": "Leer hoe je Web Clipper gebruikt en krijg hulp bij probleemoplossing."
+		"message": "Leer hoe je Hexel Capture gebruikt en krijg hulp bij probleemoplossing."
 	},
 	"highlightInline": {
 		"message": "Markeer de pagina-inhoud"
@@ -409,7 +409,7 @@
 		"message": "Eigenschappen importeren"
 	},
 	"importPropertiesDescription": {
-		"message": "Om je eigenschappen uit Obsidian te importeren, zoek het $strong_1_start$types.json$strong_1_end$ bestand in de $strong_2_start$.obsidian$strong_2_end$ map in je kluis. Deze map is standaard verborgen op de meeste besturingssystemen.",
+		"message": "Om je eigenschappen uit Cognitea te importeren, zoek het $strong_1_start$types.json$strong_1_end$ bestand in de $strong_2_start$.obsidian$strong_2_end$ map in je kluis. Deze map is standaard verborgen op de meeste besturingssystemen.",
 		"placeholders": {
 			"strong_1_end": {
 				"content": "</strong>"
@@ -467,7 +467,7 @@
 		"message": "Legacy-modus"
 	},
 	"legacyModeDescription": {
-		"message": "Gebruikt de URI-clipmethode die compatibel is met Obsidian 1.6.7 of eerder. De lengte van de inhoud die je kunt knippen wordt beperkt door je browser en besturingssysteem. Sommige pagina's kunnen zonder foutmelding mislukken."
+		"message": "Gebruikt de URI-clipmethode die compatibel is met Cognitea 1.6.7 of eerder. De lengte van de inhoud die je kunt knippen wordt beperkt door je browser en besturingssysteem. Sommige pagina's kunnen zonder foutmelding mislukken."
 	},
 	"loadArticle": {
 		"message": "Artikel lezen"
@@ -556,7 +556,7 @@
 		"message": "Openen"
 	},
 	"openBehaviorDescription": {
-		"message": "Kies hoe Web Clipper standaard wordt geopend."
+		"message": "Kies hoe Hexel Capture standaard wordt geopend."
 	},
 	"openBehaviorTitle": {
 		"message": "Open gedrag"
@@ -694,7 +694,7 @@
 		"message": "Providers"
 	},
 	"rateExtensionDescription": {
-		"message": "Geniet u van Web Clipper? Help ons door het een beoordeling te geven."
+		"message": "Geniet u van Hexel Capture? Help ons door het een beoordeling te geven."
 	},
 	"reader": {
 		"message": "Lezer"
@@ -958,7 +958,7 @@
 		"message": "Geknipte notitie opslaan zonder te openen"
 	},
 	"silentOpenDescription": {
-		"message": "Geknipte notities worden opgeslagen maar niet geopend in een nieuw tabblad. Obsidian wordt nog steeds naar de voorgrond gebracht."
+		"message": "Geknipte notities worden opgeslagen maar niet geopend in een nieuw tabblad. Cognitea wordt nog steeds naar de voorgrond gebracht."
 	},
 	"sort": {
 		"message": "Sorteren"
@@ -1053,7 +1053,7 @@
 		"message": "Kluizen"
 	},
 	"vaultsDescription": {
-		"message": "Standaard worden geknipte notities opgeslagen in de momenteel geopende kluis. Je kunt hier kluizen toevoegen als je de optie wilt hebben om in verschillende kluizen op te slaan. Kluisnamen moeten exact overeenkomen met de naam van de Obsidian-kluis. Druk op $strong_start$enter$strong_end$ om een kluis toe te voegen.",
+		"message": "Standaard worden geknipte notities opgeslagen in de momenteel geopende kluis. Je kunt hier kluizen toevoegen als je de optie wilt hebben om in verschillende kluizen op te slaan. Kluisnamen moeten exact overeenkomen met de naam van de Cognitea-kluis. Druk op $strong_start$enter$strong_end$ om een kluis toe te voegen.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
